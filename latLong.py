@@ -140,7 +140,6 @@ for port_city in port_cityList:
 				data_road_distance.append(road_distance)
 				road_duration = directions_result[0]['legs'][0]['duration']['text']
 				data_road_duration.append(road_duration)
-				print('good!')
 			else:
 				directions_result = gmaps.directions(start,
                                      end,
@@ -162,32 +161,51 @@ for port_city in port_cityList:
 	for item in data_straight_distance:
 		if port_city == 'Port Massawa':
 			all_data['massawa_straight_distance'].append(item)
-			all_data['massawa_road_distance'].append(item)
-			all_data['massawa_road_duration'].append(item)
 		if port_city == 'Port Assab':
 			all_data['assab_straight_distance'].append(item)
-			all_data['assab_road_distance'].append(item)
-			all_data['assab_road_duration'].append(item)
 		if port_city == 'Port Tadjoura':
 			all_data['tadjoura_straight_distance'].append(item)
-			all_data['tadjoura_road_distance'].append(item)
-			all_data['tadjoura_road_duration'].append(item)
 		if port_city == 'Port de Doraleh, Djibouti':
 			all_data['djibouti_straight_distance'].append(item)
-			all_data['djibouti_road_distance'].append(item)
-			all_data['djibouti_road_duration'].append(item)
 		if port_city == 'Port of Mogadishu':
 			all_data['mogadishu_straight_distance'].append(item)
-			all_data['mogadishu_road_distance'].append(item)
-			all_data['mogadishu_road_duration'].append(item)
 		if port_city == 'Berbera Port':
 			all_data['berbera_straight_distance'].append(item)
-			all_data['berbera_road_distance'].append(item)
-			all_data['berbera_road_duration'].append(item)
 		if port_city == 'Mokowe, Kenya':
 			all_data['lamu_straight_distance'].append(item)
+
+	for item in data_road_distance:
+		if port_city == 'Port Massawa':
+			all_data['massawa_road_distance'].append(item)
+		if port_city == 'Port Assab':
+			all_data['assab_road_distance'].append(item)
+		if port_city == 'Port Tadjoura':
+			all_data['tadjoura_road_distance'].append(item)
+		if port_city == 'Port de Doraleh, Djibouti':
+			all_data['djibouti_road_distance'].append(item)
+		if port_city == 'Port of Mogadishu':
+			all_data['mogadishu_road_distance'].append(item)
+		if port_city == 'Berbera Port':
+			all_data['berbera_road_distance'].append(item)
+		if port_city == 'Mokowe, Kenya':
 			all_data['lamu_road_distance'].append(item)
+
+	for item in data_road_duration:
+		if port_city == 'Port Massawa':
+			all_data['massawa_road_duration'].append(item)
+		if port_city == 'Port Assab':
+			all_data['assab_road_duration'].append(item)
+		if port_city == 'Port Tadjoura':
+			all_data['tadjoura_road_duration'].append(item)
+		if port_city == 'Port de Doraleh, Djibouti':
+			all_data['djibouti_road_duration'].append(item)
+		if port_city == 'Port of Mogadishu':
+			all_data['mogadishu_road_duration'].append(item)
+		if port_city == 'Berbera Port':
+			all_data['berbera_road_duration'].append(item)
+		if port_city == 'Mokowe, Kenya':
 			all_data['lamu_road_duration'].append(item)
+
 df = pd.DataFrame(all_data)
 df.to_csv('WedEb_with_gps.csv')
 print(df)
