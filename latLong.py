@@ -10,7 +10,7 @@ geolocator = GoogleV3(api_key=config.api_key)
 gmaps = googlemaps.Client(key=config.maps_api_key)
 
 port_cityList = ['Port Massawa', 'Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
-'Port of Mogadishu','Berbera Port', 'Lamu, Kenya'
+'Port of Mogadishu','Berbera Port', 'Mokowe, Kenya'
 ]
 
 tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
@@ -184,7 +184,7 @@ for port_city in port_cityList:
 			all_data['berbera_straight_distance'].append(item)
 			all_data['berbera_road_distance'].append(item)
 			all_data['berbera_road_duration'].append(item)
-		if port_city == 'Lamu, Kenya':
+		if port_city == 'Mokowe, Kenya':
 			all_data['lamu_straight_distance'].append(item)
 			all_data['lamu_road_distance'].append(item)
 			all_data['lamu_road_duration'].append(item)
