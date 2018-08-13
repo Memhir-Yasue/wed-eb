@@ -1,14 +1,18 @@
 # from geopy.geocoders import Nominatim
 from geopy.geocoders import GoogleV3
 from geopy.distance import geodesic
+import googlemaps
+from datetime import datetime
 import pandas as pd
 import config
 # geolocator = Nominatim(user_agent="specify_your_app_name_here")
 geolocator = GoogleV3(api_key=config.api_key)
+gmaps = googlemaps.Client(key=config.maps_api_key)
+
 port_cityList = ['Port Massawa', 'Port Assab', 'Port Tadjoura', 'Port Djibouti',
 'Port of Mogadishu','Berbera Port', 'Lamu, Kenya'
 ]
-# tigray = ['Himora','Shire', 'Aksum']
+
 tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
 		 'Mekele', 'Ambalage', 'Korem', 'Alamta']
 
@@ -81,61 +85,97 @@ region = [tigray, amhara, afar, gambella, oromiya, federal, somali, benshangul, 
 
 all_data = {
 	'city_name' : [],
-	'massawa' : [],
-	'assab': [],
-	'tadjoura': [],
-	'djibouti': [],
-	'mogadishu': [],
-	'berbera': [],
-	'lamu': [],
+
+	'massawa_straight_distance' : [],
+	'assab_straight_distance': [],
+	'tadjoura_straight_distance': [],
+	'djibouti_straight_distance': [],
+	'mogadishu_straight_distance': [],
+	'berbera_straight_distance': [],
+	'lamu_straight_distance': [],
+
+	'massawa_road_distance' : [],
+	'assab_road_distance': [],
+	'tadjoura_road_distance': [],
+	'djibouti_road_distance': [],
+	'mogadishu_road_distance': [],
+	'berbera_road_distance': [],
+	'lamu_road_distance': [],
+
+	'massawa_road_duration' : [],
+	'assab_road_duration': [],
+	'tadjoura_road_duration': [],
+	'djibouti_road_duration': [],
+	'mogadishu_road_duration': [],
+	'berbera_road_duration': [],
+	'lamu_road_duration': [],
+
 	'latitude': [],
 	'longitude': [],
 
 }
 
-# for state_Name in region:
-# 	for city in state_Name:
-# 		all_data['city_name'].append(city) # Add city as dict key to city_name
-
-# 		city_address = geolocator.geocode(dest_city)
-# 		latitude = city_address.latitude
-# 		all_data['latitude'].append(latitude)
-# 		longitude = city_address.longitude
-# 		all_data['longitude'].append(longitude)
-
 for port_city in port_cityList:
-	data_port = []
+	data_straight_distance = []
+	data_road_distance = []
+	data_road_duration = []
 	for state_Name in region:
 		for city in state_Name:
 			dest_city = city + ", Ethiopia" # Make sure towns are in Ethiopia
-			location = geolocator.geocode(port_city)
-			port = location.latitude, location.longitude
-			location = geolocator.geocode(dest_city)
-			destination = location.latitude, location.longitude
-			distance = geodesic(port,destination).miles
-			data_port.append(distance)
+			port = geolocator.geocode(port_city)
+			start = port.latitude, port.longitude
+			destination = geolocator.geocode(dest_city)
+			end = destination.latitude, destination.longitude
+			straight_distance = geodesic(start,end).miles
+			data_straight_distance.append(straight_distance)
+			if port_city != 'Port Massawa':
+				now = datetime.now()
+				directions_result = gmaps.directions(start,
+                                     end,
+                                     mode="driving",
+                                     departure_time=now)
+				road_distance = directions_result[0]['legs'][0]['distance']['text']
+				data_road_distance.append(road_distance)
+				road_duration = directions_result[0]['legs'][0]['duration']['text']
+				data_road_duration.append(road_duration)
+
 			if port_city == 'Port Massawa': # To Append all city names, and lat/long info to dict key once only
 				all_data['city_name'].append(city)
-				latitude = location.latitude
+				latitude = destination.latitude
 				all_data['latitude'].append(latitude)
-				longitude = location.longitude
+				longitude = destination.longitude
 				all_data['longitude'].append(longitude)
-			print(city,'---->', port_city, geodesic(port,destination).miles)
+			print(city,'---->', port_city, geodesic(start,end).miles)
+
 	for item in data_port:
 		if port_city == 'Port Massawa':
-			all_data['massawa'].append(item)
+			all_data['massawa_straight_distance'].append(item)
+			all_data['massawa_road_distance'].append(item)
+			all_data['massawa_road_duration'].append(item)
 		if port_city == 'Port Assab':
-			all_data['assab'].append(item)
+			all_data['assab_straight_distance'].append(item)
+			all_data['assab_road_distance'].append(item)
+			all_data['assab_road_duration'].append(item)
 		if port_city == 'Port Tadjoura':
-			all_data['tadjoura'].append(item)
+			all_data['tadjoura_straight_distance'].append(item)
+			all_data['tadjoura_road_distance'].append(item)
+			all_data['tadjoura_road_duration'].append(item)
 		if port_city == 'Port Djibouti':
-			all_data['djibouti'].append(item)
+			all_data['djibouti_straight_distance'].append(item)
+			all_data['djibouti_road_distance'].append(item)
+			all_data['djibouti_road_duration'].append(item)
 		if port_city == 'Port of Mogadishu':
-			all_data['mogadishu'].append(item)
+			all_data['mogadishu_straight_distance'].append(item)
+			all_data['mogadishu_road_distance'].append(item)
+			all_data['mogadishu_road_duration'].append(item)
 		if port_city == 'Berbera Port':
-			all_data['berbera'].append(item)
+			all_data['berbera_straight_distance'].append(item)
+			all_data['berbera_road_distance'].append(item)
+			all_data['berbera_road_duration'].append(item)
 		if port_city == 'Lamu, Kenya':
-			all_data['lamu'].append(item)
+			all_data['lamu_straight_distance'].append(item)
+			all_data['lamu_road_distance'].append(item)
+			all_data['lamu_road_duration'].append(item)
 df = pd.DataFrame(all_data)
-df.to_csv('amh_tig.csv')
+df.to_csv('WedEb_with_gps.csv')
 print(df)
