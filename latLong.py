@@ -13,10 +13,22 @@ region = [tigray]
 # 	for city in state:		Basic Template for accessing cities from region
 # 		print(city)
 ##############################
-for state_Name in region:
-	for city in state_Name: # Destination city
-		dest_City = city + ", Ethiopia" # Make sure towns are in Ethiopia
-		for port_City in port_CityList:
+
+
+# for state_Name in region:
+# 	for city in state_Name: # Destination city
+# 		dest_City = city + ", Ethiopia" # Make sure towns are in Ethiopia
+# 		for port_City in port_CityList:
+# 			location = geolocator.geocode(port_City)
+# 			port = location.latitude, location.longitude
+# 			location = geolocator.geocode(dest_City)
+# 			destination = location.latitude, location.longitude
+# 			print(city,'---->', port_City, geodesic(port,destination).miles)
+
+for port_City in port_CityList:
+	for state_Name in region:
+		for city in state_Name:
+			dest_City = city + ", Ethiopia" # Make sure towns are in Ethiopia
 			location = geolocator.geocode(port_City)
 			port = location.latitude, location.longitude
 			location = geolocator.geocode(dest_City)
