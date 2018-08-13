@@ -17,12 +17,12 @@ tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
 		 'Mekele', 'Ambalage', 'Korem', 'Alamta']
 
 amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
-'Artuma', 'Senbete', 'Molale', 'Ankober', 'Debre Birhan',
-'Degolo', 'Rema', 'Merkane Selam', 'Mertule Maryam',
+'Senbete', 'Molale', 'Ankober', 'Debre Birhan',
+'Rema', 'Merkane Selam', 'Mertule Maryam',
 'Felege Birhan', 'Zebich', 'Dejen', 'Debre Markos', 'Dembecha',
 'Bure','Injibara', 'Dangla', 'Durbete', 'Mer Awi', 'Bahir Dar',
 'Addis Zemen', 'Gondar', 'Amba Giorgis', 'Dabat', 'Debark',
-'Chew Ber','Corissa', 'Amdework', 'Sekota', 'Lalibela', 'Gashena', 'Wegel Tena',
+'Chew Ber', 'Amdework', 'Sekota', 'Lalibela', 'Gashena', 'Wegel Tena',
 'Tenta', 'Akesta', 'Metema', 'Shawira'
 ]
 
@@ -41,14 +41,14 @@ federal = [
 somali = [
 'Jijiga', 'kebri beyah', 'Degeh Bur', 'Bircot','Shekosh','Kebri Dehar',
 'Shilabo','Kelafo','Mustahil','Danan','Imi',
-'Melka Chireti','Bogol','Fiq','Hamero'
+'Melka Chireti','Bogol','Fiq'
 ]
 
 debub = [
 'Butajira','Agena','Hosaena','Alba Kulito','Areka',
 'Tarcha','Sodo','Yirga Alem','Dilla','Arba Minch','konso',
-'Machi','Masha','Gecha','Mizan Teferi','Bonga','Shishinda',
-'Omorate','Turmi','Ganda','Gedeb','Welkite'
+'Masha','Gecha','Mizan Teferi','Bonga','Shishinda',
+'Omorate','Turmi','Ganda','Welkite'
 ]
 
 
@@ -63,7 +63,7 @@ oromiya = [
 ]
 
 benshangul = [
-'Asosa','Menge','Dibate','Guba','Debre Zeyit'
+'Asosa','Menge','Guba','Debre Zeyit'
 ]
 
 region = [tigray, amhara, afar, gambella, oromiya, federal, somali, benshangul, debub]
@@ -128,16 +128,15 @@ for port_city in port_cityList:
 			end = destination.latitude, destination.longitude
 			straight_distance = geodesic(start,end).miles
 			data_straight_distance.append(straight_distance)
-			if port_city != 'Port Massawa':
-				now = datetime.now()
-				directions_result = gmaps.directions(start,
+			now = datetime.now()
+			directions_result = gmaps.directions(start,
                                      end,
                                      mode="driving",
                                      departure_time=now)
-				road_distance = directions_result[0]['legs'][0]['distance']['text']
-				data_road_distance.append(road_distance)
-				road_duration = directions_result[0]['legs'][0]['duration']['text']
-				data_road_duration.append(road_duration)
+			road_distance = directions_result[0]['legs'][0]['distance']['text']
+			data_road_distance.append(road_distance)
+			road_duration = directions_result[0]['legs'][0]['duration']['text']
+			data_road_duration.append(road_duration)
 
 			if port_city == 'Port Massawa': # To Append all city names, and lat/long info to dict key once only
 				all_data['city_name'].append(city)
@@ -147,7 +146,7 @@ for port_city in port_cityList:
 				all_data['longitude'].append(longitude)
 			print(city,'---->', port_city, geodesic(start,end).miles)
 
-	for item in data_port:
+	for item in data_straight_distance:
 		if port_city == 'Port Massawa':
 			all_data['massawa_straight_distance'].append(item)
 			all_data['massawa_road_distance'].append(item)
