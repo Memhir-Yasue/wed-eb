@@ -9,7 +9,7 @@ import config
 geolocator = GoogleV3(api_key=config.api_key)
 gmaps = googlemaps.Client(key=config.maps_api_key)
 
-port_cityList = ['Port Massawa', 'Port Assab', 'Port Tadjoura', 'Port Djibouti',
+port_cityList = ['Port Massawa', 'Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
 'Port of Mogadishu','Berbera Port', 'Lamu, Kenya'
 ]
 
@@ -128,15 +128,28 @@ for port_city in port_cityList:
 			end = destination.latitude, destination.longitude
 			straight_distance = geodesic(start,end).miles
 			data_straight_distance.append(straight_distance)
+			# Getting driving distance and duration
 			now = datetime.now()
-			directions_result = gmaps.directions(start,
+			if port_city == 'Port de Doraleh, Djibouti': # Getting around an error between himora and djibouti
+				start = '11.578054, 43.094573'
+				directions_result = gmaps.directions(start,
                                      end,
                                      mode="driving",
                                      departure_time=now)
-			road_distance = directions_result[0]['legs'][0]['distance']['text']
-			data_road_distance.append(road_distance)
-			road_duration = directions_result[0]['legs'][0]['duration']['text']
-			data_road_duration.append(road_duration)
+				road_distance = directions_result[0]['legs'][0]['distance']['text']
+				data_road_distance.append(road_distance)
+				road_duration = directions_result[0]['legs'][0]['duration']['text']
+				data_road_duration.append(road_duration)
+				print('good!')
+			else:
+				directions_result = gmaps.directions(start,
+                                     end,
+                                     mode="driving",
+                                     departure_time=now)
+				road_distance = directions_result[0]['legs'][0]['distance']['text']
+				data_road_distance.append(road_distance)
+				road_duration = directions_result[0]['legs'][0]['duration']['text']
+				data_road_duration.append(road_duration)
 
 			if port_city == 'Port Massawa': # To Append all city names, and lat/long info to dict key once only
 				all_data['city_name'].append(city)
@@ -144,7 +157,7 @@ for port_city in port_cityList:
 				all_data['latitude'].append(latitude)
 				longitude = destination.longitude
 				all_data['longitude'].append(longitude)
-			print(city,'---->', port_city, geodesic(start,end).miles)
+			print(city,'---->', port_city, geodesic(start,end).miles,'-----', road_distance, road_duration)
 
 	for item in data_straight_distance:
 		if port_city == 'Port Massawa':
@@ -159,7 +172,7 @@ for port_city in port_cityList:
 			all_data['tadjoura_straight_distance'].append(item)
 			all_data['tadjoura_road_distance'].append(item)
 			all_data['tadjoura_road_duration'].append(item)
-		if port_city == 'Port Djibouti':
+		if port_city == 'Port de Doraleh, Djibouti':
 			all_data['djibouti_straight_distance'].append(item)
 			all_data['djibouti_road_distance'].append(item)
 			all_data['djibouti_road_duration'].append(item)
