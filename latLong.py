@@ -14,7 +14,10 @@ port_cityList = ['Port Massawa', 'Port Assab', 'Port Tadjoura', 'Port de Doraleh
 ]
 
 tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
-		 'Mekele', 'Ambalage', 'Korem', 'Alamta']
+		 'Mekele', 'Ambalage', 'Korem', 'Alamta', 'Shiraro',
+		 'Birkuta','Adi Ramets','May Tsemre','Inda Aba Guna'
+
+]
 
 amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
 'Senbete', 'Molale', 'Ankober', 'Debre Birhan',
@@ -27,7 +30,7 @@ amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
 ]
 
 afar = [
-'Berhale', 'Eli Dar', 'Semera', 'Gewana', 'Awash'
+'Berhale', 'Eli Dar', 'Semera', 'Gewana', 'Awash', 'Chifra', 'Abala'
 ]
 
 gambella = [
@@ -41,14 +44,17 @@ federal = [
 somali = [
 'Jijiga', 'kebri beyah', 'Degeh Bur', 'Bircot','Shekosh','Kebri Dehar',
 'Shilabo','Kelafo','Mustahil','Danan','Imi',
-'Melka Chireti','Bogol','Fiq'
+'Melka Chireti','Bogol','Fiq','Erer', 'Dudub', 'Werder', 'Welwel',
+'Danan'
 ]
 
 debub = [
 'Butajira','Agena','Hosaena','Alba Kulito','Areka',
 'Tarcha','Sodo','Yirga Alem','Dilla','Arba Minch','konso',
 'Masha','Gecha','Mizan Teferi','Bonga','Shishinda',
-'Omorate','Turmi','Ganda','Welkite'
+'Omorate','Turmi','Welkite', 'Gesuba', 'Sawla', 'Jinka',
+'Omorate','Kemba','Bulki','Kossie','Gidole',
+'Doyogena High school','Worabe','Sekoru'
 ]
 
 
@@ -59,11 +65,12 @@ oromiya = [
 'Sashamane','Finchawa','Hagere Maryam','Kibre Mengist',
 'Wadera','Negele','Udet','Filtu','Moyala',
 'Wachile','Mega','Yebelo','Addis Alem','Waliso','Jimma',
-'Agaro','Ziway','Awassa','Fiche','Mendi'
+'Agaro','Ziway','Awassa','Fiche','Mendi', 'Guliso','Baco','Kake','Gedo',
+'Yayu','Bedele','Bichano','Nedjo','Metu','Gore'
 ]
 
 benshangul = [
-'Asosa','Menge','Guba','Debre Zeyit'
+'Asosa','Menge','Guba'
 ]
 
 region = [tigray, amhara, afar, gambella, oromiya, federal, somali, benshangul, debub]
@@ -135,7 +142,8 @@ for port_city in port_cityList:
 				directions_result = gmaps.directions(start,
                                      end,
                                      mode="driving",
-                                     departure_time=now)
+                                     departure_time=now,
+                                     units='imperial')
 				road_distance = directions_result[0]['legs'][0]['distance']['text']
 				data_road_distance.append(road_distance)
 				road_duration = directions_result[0]['legs'][0]['duration']['text']
@@ -144,7 +152,8 @@ for port_city in port_cityList:
 				directions_result = gmaps.directions(start,
                                      end,
                                      mode="driving",
-                                     departure_time=now)
+                                     departure_time=now,
+                                     units='imperial')
 				road_distance = directions_result[0]['legs'][0]['distance']['text']
 				data_road_distance.append(road_distance)
 				road_duration = directions_result[0]['legs'][0]['duration']['text']
@@ -207,5 +216,5 @@ for port_city in port_cityList:
 			all_data['lamu_road_duration'].append(item)
 
 df = pd.DataFrame(all_data)
-df.to_csv('WedEb_with_gps.csv')
+df.to_csv('WedEb_with_GPS.csv')
 print(df)
