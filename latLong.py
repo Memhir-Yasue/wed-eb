@@ -4,7 +4,10 @@ from geopy.distance import geodesic
 import googlemaps
 from datetime import datetime
 import pandas as pd
+import urllib.request
+import json
 import config
+
 # geolocator = Nominatim(user_agent="specify_your_app_name_here")
 geolocator = GoogleV3(api_key=config.api_key)
 gmaps = googlemaps.Client(key=config.maps_api_key)
@@ -119,6 +122,7 @@ all_data = {
 
 	'latitude': [],
 	'longitude': [],
+	'elevation': [],
 
 }
 
@@ -126,11 +130,11 @@ for port_city in port_cityList:
 	data_straight_distance = []
 	data_road_distance = []
 	data_road_duration = []
+	port = geolocator.geocode(port_city)
+	start = port.latitude, port.longitude
 	for state_Name in region:
 		for city in state_Name:
 			dest_city = city + ", Ethiopia" # Make sure towns are in Ethiopia
-			port = geolocator.geocode(port_city)
-			start = port.latitude, port.longitude
 			destination = geolocator.geocode(dest_city)
 			end = destination.latitude, destination.longitude
 			straight_distance = geodesic(start,end).miles
@@ -139,24 +143,24 @@ for port_city in port_cityList:
 			now = datetime.now()
 			if port_city == 'Port de Doraleh, Djibouti': # Getting around an error between himora and djibouti
 				start = '11.578054, 43.094573'
-				directions_result = gmaps.directions(start,
+				directions_result = gmaps.distance_matrix(start,
                                      end,
                                      mode="driving",
                                      departure_time=now,
                                      units='imperial')
-				road_distance = directions_result[0]['legs'][0]['distance']['text']
+				road_distance = directions_result['rows'][0]['elements'][0]['distance']['text']
 				data_road_distance.append(road_distance)
-				road_duration = directions_result[0]['legs'][0]['duration']['text']
+				road_duration = directions_result['rows'][0]['elements'][0]['duration']['value']
 				data_road_duration.append(road_duration)
 			else:
-				directions_result = gmaps.directions(start,
+				directions_result = gmaps.distance_matrix(start,
                                      end,
                                      mode="driving",
                                      departure_time=now,
                                      units='imperial')
-				road_distance = directions_result[0]['legs'][0]['distance']['text']
+				road_distance = directions_result['rows'][0]['elements'][0]['distance']['text']
 				data_road_distance.append(road_distance)
-				road_duration = directions_result[0]['legs'][0]['duration']['text']
+				road_duration = directions_result['rows'][0]['elements'][0]['duration']['value']
 				data_road_duration.append(road_duration)
 
 			if port_city == 'Port Massawa': # To Append all city names, and lat/long info to dict key once only
@@ -165,7 +169,18 @@ for port_city in port_cityList:
 				all_data['latitude'].append(latitude)
 				longitude = destination.longitude
 				all_data['longitude'].append(longitude)
-			print(city,'---->', port_city, geodesic(start,end).miles,'-----', road_distance, road_duration)
+				#elevation calculation
+				ELEVATION_BASE_URL = 'http://maps.googleapis.com/maps/api/elevation/json?'
+				URL_PARAMS = "locations=%s,%s&sensor=%s" % (latitude, longitude, "false")
+				url=ELEVATION_BASE_URL + URL_PARAMS
+				with urllib.request.urlopen(url) as f:
+					response = json.loads(f.read().decode())    
+					status = response["status"]
+					result = response["results"][0]
+				feet = 3.28084
+				elevation = str(result["elevation"] * feet )
+				all_data['elevation'].append(elevation)
+			print(city,'---->', port_city, geodesic(start,end).miles,'-----', road_distance, road_duration, elevation)
 
 	for item in data_straight_distance:
 		if port_city == 'Port Massawa':
@@ -216,5 +231,5 @@ for port_city in port_cityList:
 			all_data['lamu_road_duration'].append(item)
 
 df = pd.DataFrame(all_data)
-df.to_csv('WedEb_with_GPS.csv')
+df.to_csv('WededV3.csv')
 print(df)
