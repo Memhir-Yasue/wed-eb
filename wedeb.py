@@ -60,7 +60,7 @@ somali = [
 'Jijiga', 'kebri beyah', 'Degeh Bur', 'Bircot','Shekosh','Kebri Dehar',
 'Shilabo','Kelafo','Mustahil','Danan','Imi',
 'Melka Chireti','Bogol','Fiq','Erer', 'Dudub', 'Werder', 'Welwel',
-'Korah','Geregube','Goldogob',
+'Korah','Geregube',
 'Daror','Chinaksen','Horefedi','TogWajale','Aw-Barre',
 'Ferate','Aysha','Afdem','Hurso','Gota','Misrak Gashamo'
 ]
