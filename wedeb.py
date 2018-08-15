@@ -13,28 +13,26 @@ import config
 geolocator = GoogleV3(api_key=config.api_key)
 gmaps = googlemaps.Client(key=config.maps_api_key)
 
-port_cityList = [ 'Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
-'Port of Mogadishu','Berbera Port', 'Mokowe, Kenya'
-]
+
 
 tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
 'Mekele', 'Ambalage', 'Korem', 'Alamta', 'Shiraro','Birkuta',
-'Adi Ramets','May Tsemre','Inda Aba Guna','Slehleka','Rama','Zufan',
+'Adi Ramets','Inda Aba Guna','Slehleka','Rama','Zufan',
 'Enticho','Freweyni','Wikro','Nebelet','May Tsemre','Abiy Addi',
-'Yechilay','Adi Ramets','Maychew','Hiwane','Sheraro','Hidmo'
+'Yechilay','Maychew','Hiwane','Sheraro','Hidmo'
 
 ]
 
 amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
 'Senbete', 'Molale', 'Ankober', 'Debre Birhan',
-'Rema', 'Merane Selam', 'Mertule Maryam',
-'Felege Birhan', 'Zebich', 'Dejen', 'Debre Markos', 'Dembecha',
+'Rema', 'Mertule Maryam','Felege Birhan', 'Zebich', 'Dejen', 
+'Debre Markos', 'Dembecha',
 'Bure','Injibara', 'Dangla', 'Durbete', 'Mer Awi', 'Bahir Dar',
 'Addis Zemen', 'Gondar', 'Amba Giorgis', 'Dabat', 'Debark',
 'Chew Ber', 'Amdework', 'Sekota', 'Lalibela', 'Gashena', 'Wegel Tena',
 'Tenta', 'Akesta', 'Metema', 'Shawira','Shewa Robit','Nefas Meewcha',
-'Debre Tabor','Mekane Selam','Alem Ketema','Deneba','Motta','Sheba',
-'Debre May','Fonte Selam','Bichena','Abole','Karakore','Meshenti','Wereta'
+'Debre Tabor','Mekane Selam','Deneba','Motta','Sheba',
+'Debre May','Bichena','Abole','Karakore','Meshenti','Wereta'
 ]
 
 afar = [
@@ -62,8 +60,8 @@ somali = [
 'Jijiga', 'kebri beyah', 'Degeh Bur', 'Bircot','Shekosh','Kebri Dehar',
 'Shilabo','Kelafo','Mustahil','Danan','Imi',
 'Melka Chireti','Bogol','Fiq','Erer', 'Dudub', 'Werder', 'Welwel',
-'Danan','Hamero','Korah','Geregube','Goldogob',
-'Daror','Chinaksen','Horefedi','TogWajale','Shinile','Aw-Barre',
+'Korah','Geregube','Goldogob',
+'Daror','Chinaksen','Horefedi','TogWajale','Aw-Barre',
 'Ferate','Aysha','Afdem','Hurso','Gota','Misrak Gashamo'
 ]
 
@@ -72,11 +70,11 @@ debub = [
 'Tarcha','Sodo','Yirga Alem','Dilla','Arba Minch','konso',
 'Masha','Gecha','Mizan Teferi','Bonga','Shishinda',
 'Omorate','Turmi','Welkite','Gesuba','Sawla','Jinka',
-'Omorate','Kemba','Bulki','Kossie','Gidole',
+'Kemba','Bulki','Kossie','Gidole',
 'Doyogena High school','Worabe','Sekoru','teppi',
 'Dalocha','Alem Gebeya','Fonka','Durame','Boditi',
 'Wendo','Leku','Sisha','Humbo','Shone',
-'Durame','Chencha','Zefine','Irae','Chida',
+'Chencha','Zefine','Irae','Chida',
 'Yirga Chefe','Gedeb','Wenago'
 ]
 
@@ -92,9 +90,8 @@ oromia = [
 'Sedika','Robe','Diksis','Gobesa','Babile','Kulubi',
 'Ejersa Goro','Alem Maya','Kurfa Chele','Girawa','Bedeno',
 'Mechara','Gelemso','Hirna','Doba','Asebe Teferi','Mojo',
-'Meki','Abosa','Bulbulla','Metehara','Chefe Donsa','Dukem',
-'Holeta','Werabu','Olonkomi','Ginchi','Gumer','Bui','Enseno',
-'Koshe','Hudet','El Leg','Bitata','Ginir','Gasera','Adaba',
+'Meki','Abosa','Bulbulla','Metehara','Chefe Donsa','Holeta','Werabu','Olonkomi','Ginchi','Gumer','Bui','Enseno',
+'Koshe','Hudet','Bitata','Ginir','Gasera','Adaba',
 'Dodola','Goba','Shek Husen','Tulu Bolo','Sagure','Seru',
 'Huruta','Bekoji','meraro','iteya','Welenchiti','chitu',
 'Ejaji','Gute','Getema','Arjo','Sheno','Aleltu','Sendafa',
@@ -102,12 +99,17 @@ oromia = [
 
 ]
 
+
+
+
 benshangul = [
 'Asosa','Menge','Guba','Melca Daboch'
 ]
 
 
-region = [tigray, amhara, afar, gambella, oromia, federal, somali, benshangul, debub, Harari, Addis_Ababa, DireDawa]
+region = [somali,Addis_Ababa,DireDawa,Harar,gambella,benshangul,tigray,debub,amhara,oromia,afar
+]
+
 ###############################
 # for state in region:
 # 	for city in state:		Basic Template for accessing cities from region
@@ -138,36 +140,78 @@ all_data = {
 	# 'lamu_straight_distance': [],
 
 	# 'massawa_road_distance' : [],
-	'assab_road_distance': [],
-	'tadjoura_road_distance': [],
-	'djibouti_road_distance': [],
-	'mogadishu_road_distance': [],
-	'berbera_road_distance': [],
-	'lamu_road_distance': [],
-
 	# 'massawa_road_duration' : [],
+	'sudan_road_distance': [],
+	'sudan_road_duration': [],
+
+	'assab_road_distance': [],
 	'assab_road_duration': [],
+
+	'tadjoura_road_distance': [],
 	'tadjoura_road_duration': [],
+
+	'djibouti_road_distance': [],
 	'djibouti_road_duration': [],
+
+	'mogadishu_road_distance': [],
 	'mogadishu_road_duration': [],
+
+	'berbera_road_distance': [],
 	'berbera_road_duration': [],
+
+	'lamu_road_distance': [],
 	'lamu_road_duration': [],
+
+	
+	
+	
+	
+	
+	
+	
 
 	'latitude': [],
 	'longitude': [],
+	'elevation_meter': [],
 	'elevation_ft': [],
 
 }
+port_cityList = [ 'Port Sudan','Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
+'Port of Mogadishu','Berbera Port', 'Mokowe, Kenya'
+]
 
 port_cordinate = []
 for port_city in port_cityList:
+	if port_city == 'Port Sudan':
+		start = '19.585303, 37.231687'
+		port_cordinate.append(start)
+
+	if port_city == 'Port Assab':
+		start = '13.0139405, 42.7369299'
+		port_cordinate.append(start)
+
+	if port_city == 'Port Tadjoura':
+		start = '11.7913106, 42.87962270000001'
+		port_cordinate.append(start)
+
 	if port_city == 'Port de Doraleh, Djibouti':
 		start = '11.578054, 43.094573'
 		port_cordinate.append(start)
-	else:
-		port = geolocator.geocode(port_city)
-		start = port.latitude, port.longitude
+	
+	if port_city == 'Port of Mogadishu':
+		start = '2.026482, 45.331336'
 		port_cordinate.append(start)
+
+	if port_city == 'Berbera Port':
+		start = '10.436926, 45.007215'
+		port_cordinate.append(start)
+	if port_city == 'Mokowe, Kenya':
+		start = '-2.2352243, 40.8487826'
+		port_cordinate.append(start)
+	# else:
+	# 	port = geolocator.geocode(port_city)
+	# 	start = port.latitude, port.longitude
+	# 	port_cordinate.append(start)
 
 for state_Name in region: 
 	for city in state_Name:
@@ -179,8 +223,12 @@ for state_Name in region:
 		all_data['latitude'].append(latitude)
 		longitude = destination.longitude
 		all_data['longitude'].append(longitude)
-		all_data['state'].append(state_Name)
-		all_data['county'].append('Please fill')
+		# Get Political info
+		result = gmaps.geocode(dest_city)
+		province = result[0]['address_components'][2]['long_name']
+		zone = result[0]['address_components'][1]['long_name']
+		all_data['state'].append(province)
+		all_data['county'].append(zone)
 		#Get city elevation
 		ELEVATION_BASE_URL = 'http://maps.googleapis.com/maps/api/elevation/json?'
 		URL_PARAMS = "locations=%s,%s&sensor=%s" % (latitude, longitude, "false")
@@ -189,7 +237,6 @@ for state_Name in region:
 			response = json.loads(f.read().decode())    
 			status = response["status"]
 			result = response["results"][0]
-		
 		height = str(result["elevation"])
 		all_data['elevation_meter'].append(height)
 		feet = 3.28084
@@ -213,6 +260,7 @@ for state_Name in region:
 				mode="driving",
 				departure_time=now,
 				units='imperial')
+			print(directions_result)
 			road_distance = directions_result['rows'][0]['elements'][0]['distance']['text']
 			data_road_distance.append(road_distance)
 			road_duration = directions_result['rows'][0]['elements'][0]['duration']['value']
@@ -236,6 +284,8 @@ for state_Name in region:
 			# 		all_data['lamu_straight_distance'].append(item)
 
 			for item in data_road_distance:
+				if port_city == 'Port Sudan':
+					all_data['sudan_road_distance'].append(item)
 				if port_city == 'Port Massawa':
 					all_data['massawa_road_distance'].append(item)
 				if port_city == 'Port Assab':
@@ -252,6 +302,8 @@ for state_Name in region:
 					all_data['lamu_road_distance'].append(item)
 
 			for item in data_road_duration:
+				if port_city == 'Port Sudan':
+					all_data['sudan_road_duration'].append(item)
 				if port_city == 'Port Massawa':
 					all_data['massawa_road_duration'].append(item)
 				if port_city == 'Port Assab':
@@ -268,5 +320,5 @@ for state_Name in region:
 					all_data['lamu_road_duration'].append(item)
 pprint.pprint(all_data)
 df = pd.DataFrame(all_data)
-df.to_csv('Wedeb_V3.csv')
+df.to_csv('wedebV3.csv')
 print(df)
