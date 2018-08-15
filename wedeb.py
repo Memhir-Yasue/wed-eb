@@ -30,7 +30,7 @@ amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
 'Bure','Injibara', 'Dangla', 'Durbete', 'Mer Awi', 'Bahir Dar',
 'Addis Zemen', 'Gondar', 'Amba Giorgis', 'Dabat', 'Debark',
 'Chew Ber', 'Amdework', 'Sekota', 'Lalibela', 'Gashena', 'Wegel Tena',
-'Tenta', 'Akesta', 'Metema', 'Shawira'
+'Tenta', 'Akesta', 'Metema', 'Shawira','Shewa Robit'
 ]
 
 afar = [
@@ -41,15 +41,25 @@ gambella = [
 'Gambela', 'Abobo'
 ]
 
-federal = [
-'Addis Ababa', 'Harar', 'Dire Dawa'
+Addis_Ababa = [
+'Addis Ababa'
+]
+
+Harar = [
+'Harar'
+]
+
+DireDawa = [
+'Dire Dawa'
 ]
 
 somali = [
 'Jijiga', 'kebri beyah', 'Degeh Bur', 'Bircot','Shekosh','Kebri Dehar',
 'Shilabo','Kelafo','Mustahil','Danan','Imi',
 'Melka Chireti','Bogol','Fiq','Erer', 'Dudub', 'Werder', 'Welwel',
-'Danan'
+'Danan','Hamero','Korah','Geregube','Goldogob','',
+'Daror','Chinaksen','Horefedi','TogWajale','Shinile','Aw-Barre',
+'Ferate','Aysha','Afdem','Hurso','Gota','Misrak Gashamo',
 ]
 
 debub = [
@@ -58,11 +68,18 @@ debub = [
 'Masha','Gecha','Mizan Teferi','Bonga','Shishinda',
 'Omorate','Turmi','Welkite', 'Gesuba', 'Sawla', 'Jinka',
 'Omorate','Kemba','Bulki','Kossie','Gidole',
-'Doyogena High school','Worabe','Sekoru'
+'Doyogena High school','Worabe','Sekoru','teppi',
+'Dalocha','Alem Gebeya','Fonka','Durame','Boditi',
+'Hagere Selam','Wendo','Leku','Sisha','Humbo','Shone',
+'Durame','Chencha','Zefine','Irae','Chida',
+'Yirga Chefe','Gedeb','Wenago','','','',
+'','','','','','',
+'','','','','','',
+'','','','','','',
 ]
 
 
-oromiya = [
+oromia = [
 'Gimbi','Dembi Dolo','Dongoro','Nekemte','Ambo',
 'Bishoftu','Adama','Meiso','Karamile','Raaso',
 'Delo','Dinsho','Assela','Tiya','Asasa',
@@ -70,14 +87,22 @@ oromiya = [
 'Wadera','Negele','Udet','Filtu','Moyala',
 'Wachile','Mega','Yebelo','Addis Alem','Waliso','Jimma',
 'Agaro','Ziway','Awassa','Fiche','Mendi', 'Guliso','Baco','Kake','Gedo',
-'Yayu','Bedele','Bichano','Nedjo','Metu','Gore'
+'Yayu','Bedele','Bichano','Nedjo','Metu','Gore','Dera',
+'Sedika','Robe','Diksis','Gobesa','Babile','Kulubi',
+'Ejersa Goro','Alem Maya','Kurfa Chele','Girawa','Bedeno',
+'Mechara','Gelemso','Hirna','Doba','Asebe Teferi','Mojo',
+'Meki','Abosa','Bulbulla','Metehara','Chefe Donsa','Dukem',
+'Holeta','Werabu','Olonkomi','Ginchi','Gumer','Bui','Enseno',
+'Koshe','Hudet','El Leg','Bitata','Ginir','Gasera','Adaba',
+'Dodola','Goba','Shek Husen','',
+
 ]
 
 benshangul = [
-'Asosa','Menge','Guba'
+'Asosa','Menge','Guba','Melca Daboch'
 ]
 
-region = [tigray, amhara, afar, gambella, oromiya, federal, somali, benshangul, debub]
+region = [tigray, amhara, afar, gambella, oromia, federal, somali, benshangul, debub, Harari, Addis_Ababa, DireDawa]
 ###############################
 # for state in region:
 # 	for city in state:		Basic Template for accessing cities from region
@@ -96,6 +121,8 @@ region = [tigray, amhara, afar, gambella, oromiya, federal, somali, benshangul, 
 
 all_data = {
 	'city_name' : [],
+	'state': [],
+	'county':[],
 
 	# 'massawa_straight_distance' : [],
 	# 'assab_straight_distance': [],
@@ -123,7 +150,7 @@ all_data = {
 
 	'latitude': [],
 	'longitude': [],
-	'elevation': [],
+	'elevation_ft': [],
 
 }
 
@@ -147,6 +174,8 @@ for state_Name in region:
 		all_data['latitude'].append(latitude)
 		longitude = destination.longitude
 		all_data['longitude'].append(longitude)
+		all_data['state'].append(state_Name)
+		all_data['county'].append('Please fill')
 		#Get city elevation
 		ELEVATION_BASE_URL = 'http://maps.googleapis.com/maps/api/elevation/json?'
 		URL_PARAMS = "locations=%s,%s&sensor=%s" % (latitude, longitude, "false")
@@ -155,9 +184,12 @@ for state_Name in region:
 			response = json.loads(f.read().decode())    
 			status = response["status"]
 			result = response["results"][0]
+		
+		height = str(result["elevation"])
+		all_data['elevation_meter'].append(height)
 		feet = 3.28084
 		height = str(result["elevation"] * feet )
-		all_data['elevation'].append(height)
+		all_data['elevation_ft'].append(height)
 
 		port_index =  0
 		for port_city in port_cityList:
