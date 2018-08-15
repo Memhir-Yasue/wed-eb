@@ -18,8 +18,10 @@ port_cityList = [ 'Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
 ]
 
 tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
-		 'Mekele', 'Ambalage', 'Korem', 'Alamta', 'Shiraro',
-		 'Birkuta','Adi Ramets','May Tsemre','Inda Aba Guna'
+'Mekele', 'Ambalage', 'Korem', 'Alamta', 'Shiraro','Birkuta',
+'Adi Ramets','May Tsemre','Inda Aba Guna','Slehleka','Rama','Zufan',
+'Enticho','Freweyni','Wikro','Nebelet','May Tsemre','Abiy Addi',
+'Yechilay','Adi Ramets','Maychew','Hiwane','Sheraro','Hidmo',
 
 ]
 
@@ -70,7 +72,7 @@ debub = [
 'Omorate','Kemba','Bulki','Kossie','Gidole',
 'Doyogena High school','Worabe','Sekoru','teppi',
 'Dalocha','Alem Gebeya','Fonka','Durame','Boditi',
-'Hagere Selam','Wendo','Leku','Sisha','Humbo','Shone',
+'Wendo','Leku','Sisha','Humbo','Shone',
 'Durame','Chencha','Zefine','Irae','Chida',
 'Yirga Chefe','Gedeb','Wenago','','','',
 '','','','','','',
