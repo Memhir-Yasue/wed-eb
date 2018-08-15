@@ -34,12 +34,12 @@ amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
 'Chew Ber', 'Amdework', 'Sekota', 'Lalibela', 'Gashena', 'Wegel Tena',
 'Tenta', 'Akesta', 'Metema', 'Shawira','Shewa Robit','Nefas Meewcha',
 'Debre Tabor','Mekane Selam','Alem Ketema','Deneba','Motta','Sheba',
-'Debre May','Fonte Selam','Bichena','Abole','Karakore','Meshenti'
+'Debre May','Fonte Selam','Bichena','Abole','Karakore','Meshenti','Wereta'
 ]
 
 afar = [
 'Berhale', 'Eli Dar', 'Semera', 'Gewana', 'Awash', 'Chifra', 'Abala',
-'Onale','Asaita','Tendaho',
+'Onale','Asaita','Tendaho'
 ]
 
 gambella = [
@@ -62,23 +62,23 @@ somali = [
 'Jijiga', 'kebri beyah', 'Degeh Bur', 'Bircot','Shekosh','Kebri Dehar',
 'Shilabo','Kelafo','Mustahil','Danan','Imi',
 'Melka Chireti','Bogol','Fiq','Erer', 'Dudub', 'Werder', 'Welwel',
-'Danan','Hamero','Korah','Geregube','Goldogob','',
+'Danan','Hamero','Korah','Geregube','Goldogob',
 'Daror','Chinaksen','Horefedi','TogWajale','Shinile','Aw-Barre',
-'Ferate','Aysha','Afdem','Hurso','Gota','Misrak Gashamo',
+'Ferate','Aysha','Afdem','Hurso','Gota','Misrak Gashamo'
 ]
 
 debub = [
 'Butajira','Agena','Hosaena','Alba Kulito','Areka',
 'Tarcha','Sodo','Yirga Alem','Dilla','Arba Minch','konso',
 'Masha','Gecha','Mizan Teferi','Bonga','Shishinda',
-'Omorate','Turmi','Welkite', 'Gesuba', 'Sawla', 'Jinka',
+'Omorate','Turmi','Welkite','Gesuba','Sawla','Jinka',
 'Omorate','Kemba','Bulki','Kossie','Gidole',
 'Doyogena High school','Worabe','Sekoru','teppi',
 'Dalocha','Alem Gebeya','Fonka','Durame','Boditi',
 'Wendo','Leku','Sisha','Humbo','Shone',
 'Durame','Chencha','Zefine','Irae','Chida',
 'Yirga Chefe','Gedeb','Wenago'
-
+]
 
 oromia = [
 'Gimbi','Dembi Dolo','Dongoro','Nekemte','Ambo',
@@ -95,13 +95,17 @@ oromia = [
 'Meki','Abosa','Bulbulla','Metehara','Chefe Donsa','Dukem',
 'Holeta','Werabu','Olonkomi','Ginchi','Gumer','Bui','Enseno',
 'Koshe','Hudet','El Leg','Bitata','Ginir','Gasera','Adaba',
-'Dodola','Goba','Shek Husen','Tulu Bolo'
+'Dodola','Goba','Shek Husen','Tulu Bolo','Sagure','Seru',
+'Huruta','Bekoji','meraro','iteya','Welenchiti','chitu',
+'Ejaji','Gute','Getema','Arjo','Sheno','Aleltu','Sendafa',
+'Sululta','Chancho','Muke Turi','Ali Doro','Tulu Milki','Ejere'
 
 ]
 
 benshangul = [
 'Asosa','Menge','Guba','Melca Daboch'
 ]
+
 
 region = [tigray, amhara, afar, gambella, oromia, federal, somali, benshangul, debub, Harari, Addis_Ababa, DireDawa]
 ###############################
