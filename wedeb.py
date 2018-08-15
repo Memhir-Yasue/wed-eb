@@ -21,22 +21,25 @@ tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
 'Mekele', 'Ambalage', 'Korem', 'Alamta', 'Shiraro','Birkuta',
 'Adi Ramets','May Tsemre','Inda Aba Guna','Slehleka','Rama','Zufan',
 'Enticho','Freweyni','Wikro','Nebelet','May Tsemre','Abiy Addi',
-'Yechilay','Adi Ramets','Maychew','Hiwane','Sheraro','Hidmo',
+'Yechilay','Adi Ramets','Maychew','Hiwane','Sheraro','Hidmo'
 
 ]
 
 amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
 'Senbete', 'Molale', 'Ankober', 'Debre Birhan',
-'Rema', 'Merkane Selam', 'Mertule Maryam',
+'Rema', 'Merane Selam', 'Mertule Maryam',
 'Felege Birhan', 'Zebich', 'Dejen', 'Debre Markos', 'Dembecha',
 'Bure','Injibara', 'Dangla', 'Durbete', 'Mer Awi', 'Bahir Dar',
 'Addis Zemen', 'Gondar', 'Amba Giorgis', 'Dabat', 'Debark',
 'Chew Ber', 'Amdework', 'Sekota', 'Lalibela', 'Gashena', 'Wegel Tena',
-'Tenta', 'Akesta', 'Metema', 'Shawira','Shewa Robit'
+'Tenta', 'Akesta', 'Metema', 'Shawira','Shewa Robit','Nefas Meewcha',
+'Debre Tabor','Mekane Selam','Alem Ketema','Deneba','Motta','Sheba',
+'Debre May','Fonte Selam','Bichena','Abole','Karakore','Meshenti'
 ]
 
 afar = [
-'Berhale', 'Eli Dar', 'Semera', 'Gewana', 'Awash', 'Chifra', 'Abala'
+'Berhale', 'Eli Dar', 'Semera', 'Gewana', 'Awash', 'Chifra', 'Abala',
+'Onale','Asaita','Tendaho',
 ]
 
 gambella = [
@@ -74,11 +77,7 @@ debub = [
 'Dalocha','Alem Gebeya','Fonka','Durame','Boditi',
 'Wendo','Leku','Sisha','Humbo','Shone',
 'Durame','Chencha','Zefine','Irae','Chida',
-'Yirga Chefe','Gedeb','Wenago','','','',
-'','','','','','',
-'','','','','','',
-'','','','','','',
-]
+'Yirga Chefe','Gedeb','Wenago'
 
 
 oromia = [
@@ -96,7 +95,7 @@ oromia = [
 'Meki','Abosa','Bulbulla','Metehara','Chefe Donsa','Dukem',
 'Holeta','Werabu','Olonkomi','Ginchi','Gumer','Bui','Enseno',
 'Koshe','Hudet','El Leg','Bitata','Ginir','Gasera','Adaba',
-'Dodola','Goba','Shek Husen','',
+'Dodola','Goba','Shek Husen','Tulu Bolo'
 
 ]
 
