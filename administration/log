@@ -1,0 +1,27 @@
+199909061532   0     1     0heinimann copy g:\admin\etwored17co etwored01co
+199909061536   0     0     0heinimann dropitem etwored01co.pat etwored01co.pat
+199909061627   3     2     0heinimann ae
+199909061627   0     1     0heinimann ae
+199909061627   0     1     0heinimann ae
+199909061715   0     1     0heinimann ae
+199909061716   0     0     0heinimann copy etregio01co gaga
+199909061716   0     0     0heinimann infodbase gaga.pat gaga.dbf
+199909061717   0     0     0heinimann ARCEDIT D:\ETHIO-GIS\ADMIN\ETREGIO01CO
+199909061717   1     2     0heinimann ae
+199909061718   1     1     0heinimann ae
+199909061718   0     0     0heinimann kill gaga
+199909062254   0     1     0Administrator rename ETWORED01CO ETWeRED01CO
+199909062303   0     0     0Administrator additem ETWeRED01CO.pat ETWeRED01CO.pat WEREDA 30 30 C
+199909062303   0     1     0Administrator AE
+199909062303   0     0     0Administrator additem ETWeRED01CO.pat ETWeRED01CO.pat WEREDA 30 30 C
+199909062303   0     0     0Administrator DROPITEM ETWeRED01CO.PAT ETWeRED01CO.PAT
+199909062304   0     0     0Administrator additem ETWeRED01CO.pat ETWeRED01CO.pat WEREDA 30 30 C # ETWERED01CO-ID
+199909062305   0     0     0Administrator ARCEDIT E:\GIS\ETHIO-GIS\ADMIN\ETWERED01CO
+199909062305   1    23     0Administrator AE
+199909062305   0     0     0Administrator DROPITEM ETWeRED01CO.PAT ETWeRED01CO.PAT
+19990907 911   0     0     0heinimann ARCSHAPE ETWERED01CO POLY GAGA
+19990907 912   0     1     0heinimann DROPITEM  ETWERED01CO.PAT  ETWERED01CO.PAT
+19990907 914   0     1     0heinimann ARCSHAPE ETWERED01CO POLY D:\ETHIO-CD\ETHIO-GIS-SHP\ADMIN\ETWERED1
+19990907 915   0     1     0heinimann ARCSHAPE ETWERED01CO POLY D:\ETHIO-CD\ETHIO-GIS-SHP\ADMIN\ETWERED
+19990907 915   0     1     0heinimann ARCSHAPE ETWERED01CO POLY D:\ETHIO-CD\ETHIO-GIS-SHP\ADMIN\ETWERED
+199909071046   3     4     0heinimann ae
