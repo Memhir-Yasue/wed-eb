@@ -100,8 +100,6 @@ oromia = [
 ]
 
 
-
-
 benshangul = [
 'Asosa','Menge','Guba','Melca Daboch'
 ]
