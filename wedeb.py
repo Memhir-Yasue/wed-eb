@@ -20,7 +20,6 @@ tigray = ['Himora','Shire', 'Aksum', 'Adwa', 'Adigrat', 'Negash',
 'Adi Ramets','Inda Aba Guna','Slehleka','Rama','Zufan',
 'Enticho','Freweyni','Wikro','Nebelet','May Tsemre','Abiy Addi',
 'Yechilay','Maychew','Hiwane','Sheraro','Hidmo'
-
 ]
 
 amhara = ['Weldiya', 'Mersa', 'Dessie', 'Kombolcha',
@@ -89,7 +88,7 @@ oromia = [
 'Yayu','Bedele','Bichano','Nedjo','Metu','Gore','Dera',
 'Sedika','Robe','Diksis','Gobesa','Babile','Kulubi',
 'Ejersa Goro','Alem Maya','Kurfa Chele','Girawa','Bedeno',
-'Mechara','Gelemso','Hirna','Doba','Asebe Teferi','Mojo',
+'Mechara','Gelemso','Hirna','Asebe Teferi','Mojo',
 'Meki','Abosa','Bulbulla','Metehara','Chefe Donsa','Holeta','Werabu','Olonkomi','Ginchi','Gumer','Bui','Enseno',
 'Koshe','Hudet','Bitata','Ginir','Gasera','Adaba',
 'Dodola','Goba','Shek Husen','Tulu Bolo','Sagure','Seru',
@@ -107,7 +106,7 @@ benshangul = [
 ]
 
 
-region = [somali,Addis_Ababa,DireDawa,Harar,gambella,benshangul,tigray,debub,amhara,oromia,afar
+region = [oromia,somali,Addis_Ababa,DireDawa,Harar,gambella,benshangul,tigray,debub,amhara,afar
 ]
 
 ###############################
@@ -144,6 +143,9 @@ all_data = {
 	'sudan_road_distance': [],
 	'sudan_road_duration': [],
 
+	'massawa_road_distance':[],
+	'massawa_road_duration':[],
+
 	'assab_road_distance': [],
 	'assab_road_duration': [],
 
@@ -162,21 +164,13 @@ all_data = {
 	'lamu_road_distance': [],
 	'lamu_road_duration': [],
 
-	
-	
-	
-	
-	
-	
-	
-
 	'latitude': [],
 	'longitude': [],
-	'elevation_meter': [],
-	'elevation_ft': [],
-
+	# 'elevation_meter': [],
+	# 'elevation_ft': [],
 }
-port_cityList = [ 'Port Sudan','Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
+
+port_cityList = ['Port Sudan','Port Massawa','Port Assab', 'Port Tadjoura', 'Port de Doraleh, Djibouti',
 'Port of Mogadishu','Berbera Port', 'Mokowe, Kenya'
 ]
 
@@ -184,6 +178,10 @@ port_cordinate = []
 for port_city in port_cityList:
 	if port_city == 'Port Sudan':
 		start = '19.585303, 37.231687'
+		port_cordinate.append(start)
+
+	if port_city == 'Port Massawa':
+		start = '15.607587, 39.453350'
 		port_cordinate.append(start)
 
 	if port_city == 'Port Assab':
@@ -229,19 +227,19 @@ for state_Name in region:
 		zone = result[0]['address_components'][1]['long_name']
 		all_data['state'].append(province)
 		all_data['county'].append(zone)
-		#Get city elevation
-		ELEVATION_BASE_URL = 'http://maps.googleapis.com/maps/api/elevation/json?'
-		URL_PARAMS = "locations=%s,%s&sensor=%s" % (latitude, longitude, "false")
-		url=ELEVATION_BASE_URL + URL_PARAMS
-		with urllib.request.urlopen(url) as f:
-			response = json.loads(f.read().decode())    
-			status = response["status"]
-			result = response["results"][0]
-		height = str(result["elevation"])
-		all_data['elevation_meter'].append(height)
-		feet = 3.28084
-		height = str(result["elevation"] * feet )
-		all_data['elevation_ft'].append(height)
+		# #Get city elevation (temp not working)
+		# ELEVATION_BASE_URL = 'http://maps.googleapis.com/maps/api/elevation/json?'
+		# URL_PARAMS = "locations=%s,%s&sensor=%s" % (latitude, longitude, "false")
+		# url=ELEVATION_BASE_URL + URL_PARAMS
+		# with urllib.request.urlopen(url) as f:
+		# 	response = json.loads(f.read().decode())    
+		# 	status = response["status"]
+		# 	result = response["results"][0]
+		# height = str(result["elevation"])
+		# all_data['elevation_meter'].append(height)
+		# feet = 3.28084
+		# height = str(result["elevation"] * feet )
+		# all_data['elevation_ft'].append(height)
 
 		port_index =  0
 		for port_city in port_cityList:
@@ -265,7 +263,7 @@ for state_Name in region:
 			data_road_distance.append(road_distance)
 			road_duration = directions_result['rows'][0]['elements'][0]['duration']['value']
 			data_road_duration.append(road_duration)
-			print(city,'---->', port_city,'-----', road_distance, road_duration,height)
+			print(city,'---->', port_city,'-----', road_distance, road_duration)
 
 			# for item in data_straight_distance:
 			# 	if port_city == 'Port Massawa':
@@ -320,5 +318,5 @@ for state_Name in region:
 					all_data['lamu_road_duration'].append(item)
 pprint.pprint(all_data)
 df = pd.DataFrame(all_data)
-df.to_csv('wedebV3.csv')
+df.to_csv('wedebV4.csv')
 print(df)
